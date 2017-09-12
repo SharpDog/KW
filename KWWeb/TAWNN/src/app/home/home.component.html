@@ -3,7 +3,8 @@
     <h5>
      <span translate>Find places around town:</span>
     </h5>
-    <app-gmap id="home-map"></app-gmap>
+    <app-message #growl></app-message>
+    <app-gmap #homemap></app-gmap>
     <app-loader [isLoading]="isLoading"></app-loader>
     <q [hidden]="isLoading">{{quote}}</q>
   </div>

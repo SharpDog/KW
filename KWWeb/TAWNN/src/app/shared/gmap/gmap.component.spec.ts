@@ -22,4 +22,26 @@ describe('MapComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should be visible by default', () => {
+    // Arrange
+    const element = fixture.nativeElement;
+    const div = element.querySelectorAll('div')[0];
+
+    // Assert
+    expect(div.getAttribute('hidden')).toBeNull();
+  });
+
+  it('should not be visible when app is loading', () => {
+    // Arrange
+    const element = fixture.nativeElement;
+    const div = element.querySelectorAll('div')[0];
+
+    // Act
+    fixture.componentInstance.isLoading = true;
+    fixture.detectChanges();
+
+    // Assert
+    expect(div.getAttribute('hidden')).not.toBeNull();
+  });
 });

@@ -4,27 +4,32 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LoaderComponent } from './loader/loader.component';
 
-import { AgmCoreModule, MapsAPILoader } from '@agm/core';
+import { AgmCoreModule } from '@agm/core';
 import { GmapComponent } from './gmap/gmap.component';
+
+import { GrowlModule } from 'primeng/primeng';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
   imports: [
     FormsModule,
+    GrowlModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBFkcGyL4LHxNY_UN6TCVDOBnEVX_amDZI',
       libraries: ['places']
     }),
-
     CommonModule
   ],
   declarations: [
     LoaderComponent,
-    GmapComponent
+    GmapComponent,
+    MessageComponent
   ],
   exports: [
     LoaderComponent,
-    GmapComponent
+    GmapComponent,
+    MessageComponent
   ]
 })
 export class SharedModule { }
