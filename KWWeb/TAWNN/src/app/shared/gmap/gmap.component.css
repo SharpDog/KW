@@ -1,4 +1,6 @@
-.app-gmap {
-  width: 500px;
-  height: 500px;
+.app-agm-map {
+  min-width: 200px;
+  min-height: 300px;
+  width: 100%;
+  height: 100%;
 }
