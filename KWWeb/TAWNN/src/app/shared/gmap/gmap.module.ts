@@ -6,7 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 
-import { MapComponent } from './map.component';
+import { GmapComponent } from './gmap.component';
 
 @NgModule({
   imports: [
@@ -15,12 +15,12 @@ import { MapComponent } from './map.component';
     TranslateModule,
     NgbModule,
     AgmCoreModule.forRoot({
-      apiKey: "AIzaSyBFkcGyL4LHxNY_UN6TCVDOBnEVX_amDZI",
-      libraries: ["places"]
+      apiKey: 'AIzaSyBFkcGyL4LHxNY_UN6TCVDOBnEVX_amDZI',
+      libraries: ['places']
     })
   ],
   declarations: [
-    MapComponent
+    GmapComponent
   ]
 })
-export class MapModule { }
+export class GmapModule { }

@@ -3,15 +3,22 @@ import { CommonModule } from '@angular/common';
 
 import { LoaderComponent } from './loader/loader.component';
 
+
+import { AgmCoreModule, MapsAPILoader } from '@agm/core';
+import { GmapComponent } from './gmap/gmap.component';
+
 @NgModule({
   imports: [
+    AgmCoreModule,
     CommonModule
   ],
   declarations: [
-    LoaderComponent
+    LoaderComponent,
+    GmapComponent
   ],
   exports: [
-    LoaderComponent
+    LoaderComponent,
+    GmapComponent
   ]
 })
 export class SharedModule { }

@@ -1,7 +1,7 @@
 import 'rxjs/add/operator/finally';
 
 import { Component, OnInit } from '@angular/core';
-
+import { GmapModule } from '../shared/gmap/gmap.module';
 import { QuoteService } from './quote.service';
 
 @Component({

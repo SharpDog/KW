@@ -1,10 +1,9 @@
 <div class="container-fluid">
   <div class="jumbotron text-center">
-    <h1>
-      <img class="logo" src="assets/ORNL_Leaf_400x400.jpg" alt="Welcome !"/>
-      <span translate>Hello world !</span>
-    </h1>
-    <map></map>
+    <h5>
+     <span translate>Find places around town:</span>
+    </h5>
+    <app-gmap></app-gmap>
     <app-loader [isLoading]="isLoading"></app-loader>
     <q [hidden]="isLoading">{{quote}}</q>
   </div>
