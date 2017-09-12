@@ -4,16 +4,14 @@ import {} from 'googlemaps';
 import {} from '@types/googlemaps';
 import { MapsAPILoader } from '@agm/core';
 
-import { MessageService } from '../message/message.service';
-import {ToasterService} from "../../core/toaster.service";
+import {ToasterService} from 'angular2-toaster';
 
 declare var google: any;
 
 @Component({
   selector: 'app-gmap',
   templateUrl: './gmap.component.html',
-  styleUrls: ['./gmap.component.css'],
-  providers: [MessageService]
+  styleUrls: ['./gmap.component.css']
 })
 
 export class GmapComponent implements OnInit, AfterViewInit {
@@ -28,7 +26,6 @@ export class GmapComponent implements OnInit, AfterViewInit {
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
-    private messageService: MessageService,
     private toasterService: ToasterService
   ) {}
 
@@ -62,9 +59,7 @@ export class GmapComponent implements OnInit, AfterViewInit {
           this.longitude = place.geometry.location.lng();
 
           navigator.geolocation.getCurrentPosition( (p: Position) => {
-            this.messageService.showMessage('info', 'distance:',
-              this.haversine(place.geometry.location.lat(), place.geometry.location.lng(), p.coords) + ' km.');
-            this.toasterService.showToaster('info', 'distance:',
+            this.toasterService.pop('info', 'distance:',
               this.haversine(place.geometry.location.lat(), place.geometry.location.lng(), p.coords) + ' km.');
           });
       });

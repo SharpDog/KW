@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LoaderComponent } from './loader/loader.component';
@@ -7,13 +8,13 @@ import { LoaderComponent } from './loader/loader.component';
 import { AgmCoreModule } from '@agm/core';
 import { GmapComponent } from './gmap/gmap.component';
 
-import { GrowlModule } from 'primeng/primeng';
-import { MessageComponent } from './message/message.component';
+import {ToasterModule} from 'angular2-toaster';
 
 @NgModule({
   imports: [
+    BrowserAnimationsModule,
     FormsModule,
-    GrowlModule,
+    ToasterModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBFkcGyL4LHxNY_UN6TCVDOBnEVX_amDZI',
@@ -23,13 +24,11 @@ import { MessageComponent } from './message/message.component';
   ],
   declarations: [
     LoaderComponent,
-    GmapComponent,
-    MessageComponent
+    GmapComponent
   ],
   exports: [
     LoaderComponent,
-    GmapComponent,
-    MessageComponent
+    GmapComponent
   ]
 })
 export class SharedModule { }
