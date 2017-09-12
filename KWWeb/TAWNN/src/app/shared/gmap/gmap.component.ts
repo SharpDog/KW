@@ -4,7 +4,7 @@ import {} from 'googlemaps';
 import {} from '@types/googlemaps';
 import { MapsAPILoader } from '@agm/core';
 
-import {ToasterService} from 'angular2-toaster';
+import { ToasterService } from 'angular2-toaster';
 
 declare var google: any;
 

@@ -8,7 +8,8 @@ import { LoaderComponent } from './loader/loader.component';
 import { AgmCoreModule } from '@agm/core';
 import { GmapComponent } from './gmap/gmap.component';
 
-import {ToasterModule} from 'angular2-toaster';
+import { ToasterModule } from 'angular2-toaster';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
   imports: [
@@ -24,11 +25,13 @@ import {ToasterModule} from 'angular2-toaster';
   ],
   declarations: [
     LoaderComponent,
-    GmapComponent
+    GmapComponent,
+    MessageComponent
   ],
   exports: [
     LoaderComponent,
-    GmapComponent
+    GmapComponent,
+    MessageComponent
   ]
 })
 export class SharedModule { }

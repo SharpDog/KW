@@ -1,32 +1,18 @@
-import 'rxjs/add/operator/finally';
+import { Component } from '@angular/core';
 
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-
-import { Message } from 'primeng/components/common/api';
-
-import { MessageService } from './message.service';
+import { ToasterConfig} from 'angular2-toaster';
 
 @Component({
   selector: 'app-message',
   templateUrl: './message.component.html',
-  styleUrls: ['./message.component.scss'],
-  providers: [MessageService]
+  styleUrls: ['./message.component.scss']
 })
 
-export class MessageComponent implements AfterViewInit {
+export class MessageComponent {
 
-  objMessage: Message[];
-
-  constructor(private messageService: MessageService)
-  {
-    this.objMessage = [];
-  }
-
-  ngAfterViewInit() {
-    this.messageService.messageStatus.subscribe((val: Message) => {
-      if (val) {
-        this.objMessage.push(val);
-      }
+  public toasterconfig : ToasterConfig =
+    new ToasterConfig({
+      timeout: 2000,
+      animation: 'fade'
     });
-  }
 }
