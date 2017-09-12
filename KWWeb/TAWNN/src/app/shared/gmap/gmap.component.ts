@@ -1,4 +1,4 @@
-import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
+import { Component, NgZone, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {} from 'googlemaps';
 import {} from '@types/googlemaps';
@@ -12,7 +12,7 @@ declare var google: any;
   styleUrls: ['./gmap.component.css']
 })
 
-export class GmapComponent implements OnInit {
+export class GmapComponent implements OnInit, AfterViewInit {
   public latitude: number;
   public longitude: number;
   public searchControl: FormControl;
@@ -34,6 +34,9 @@ export class GmapComponent implements OnInit {
 
     // create search FormControl
     this.searchControl = new FormControl();
+  }
+
+  ngAfterViewInit() {
 
     // set current position
     this.setCurrentPosition();
@@ -41,22 +44,17 @@ export class GmapComponent implements OnInit {
     // load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ["address"]
+        types: ['address']
       });
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
-          // get the place result
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-
-          // verify result
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
-
-          // set latitude, longitude and zoom
           this.latitude = place.geometry.location.lat();
           this.longitude = place.geometry.location.lng();
-          this.zoom = 12;
+//          this.zoom = 12;
         });
       });
     });

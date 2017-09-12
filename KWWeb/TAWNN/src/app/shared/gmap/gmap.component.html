@@ -2,7 +2,15 @@
   <div class="form-group">
     <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
   </div>
-  <agm-map id="map-canvas" class="app-agm-map" [latitude]="lat" [longitude]="lng">
-    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  <agm-map [latitude]="latitude" [longitude]="longitude" [disableDefaultUI]="false" [scrollwheel]="true" [zoom]="zoom">
+    <agm-marker [latitude]="latitude" [longitude]="longitude">
+      *ngFor="let m of markers; let i = index"
+      (markerClick)="clickedMarker(m.label, i)"
+      [latitude]="m.lat"
+      [longitude]="m.lng"
+      [label]="m.label"
+      [markerDraggable]="m.draggable"
+      (dragEnd)="markerDragEnd(m, $event)"
+    </agm-marker>
   </agm-map>
 </div>
