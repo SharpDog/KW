@@ -1,4 +1,4 @@
-import { Component, NgZone, OnInit, AfterViewInit, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, NgZone, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {} from 'googlemaps';
 import {} from '@types/googlemaps';
@@ -9,10 +9,7 @@ declare var google: any;
 @Component({
   selector: 'app-gmap',
   templateUrl: './gmap.component.html',
-  styleUrls: ['./gmap.component.css'],
-  host: {
-    '(window:resize)': 'onResize($event)'
-  }
+  styleUrls: ['./gmap.component.css']
 })
 
 export class GmapComponent implements OnInit, AfterViewInit {
@@ -20,9 +17,6 @@ export class GmapComponent implements OnInit, AfterViewInit {
   public longitude: number;
   public searchControl: FormControl;
   public zoom: number;
-
-  @ViewChildren('gmap')
-  public gmapElementRef: ElementRef;
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
@@ -47,7 +41,7 @@ export class GmapComponent implements OnInit, AfterViewInit {
     // set current position
     this.setCurrentPosition();
 
-    // load Places Autocomplete
+    // load Places Auto-complete
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ['address']
@@ -60,14 +54,29 @@ export class GmapComponent implements OnInit, AfterViewInit {
           }
           this.latitude = place.geometry.location.lat();
           this.longitude = place.geometry.location.lng();
-//          this.zoom = 12;
-        });
+
+          navigator.geolocation.getCurrentPosition( (p: Position) => {
+            alert(this.haversine(place.geometry.location.lat(), place.geometry.location.lng(), p.coords) + ' km.');
+          });
       });
     });
+  })
   }
 
-  private onResize(event: Event) {
-//    this.gmapElementRef.
+  rad(x: number): number { return x * Math.PI / 180 };
+
+  // Distance in kilometers between two points using the Haversine algorithm.
+  public haversine(p1_lat: number, p1_lng: number, p2: Coordinates): number {
+    const R = 6371  // radius of Earth in km.
+    const dLat: number  = this.rad(p2.latitude - p1_lat)
+    const dLong: number = this.rad(p2.longitude - p1_lng)
+
+    var a: number = Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.cos(this.rad(p1_lat)) * Math.cos(this.rad(p2.latitude)) * Math.sin(dLong/2) * Math.sin(dLong/2)
+    var c: number = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
+    var d: number = R * c
+
+    return Math.round(d)
   }
 
   private setCurrentPosition() {
@@ -75,7 +84,6 @@ export class GmapComponent implements OnInit, AfterViewInit {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
-//        this.zoom = 12;
       });
     }
   }
