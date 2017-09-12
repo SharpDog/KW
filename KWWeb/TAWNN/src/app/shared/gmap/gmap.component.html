@@ -1,8 +1,8 @@
 <div class="container">
   <div class="form-group">
-    <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+    <input #search placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" [formControl]="searchControl">
   </div>
-  <agm-map [latitude]="latitude" [longitude]="longitude" [disableDefaultUI]="false" [scrollwheel]="true" [zoom]="zoom">
+  <agm-map #gmap [latitude]="latitude" [longitude]="longitude" [disableDefaultUI]="false" [scrollwheel]="true" [zoom]="zoom">
     <agm-marker [latitude]="latitude" [longitude]="longitude">
       *ngFor="let m of markers; let i = index"
       (markerClick)="clickedMarker(m.label, i)"

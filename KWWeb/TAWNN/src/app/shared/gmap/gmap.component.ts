@@ -1,4 +1,4 @@
-import { Component, NgZone, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, NgZone, OnInit, AfterViewInit, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {} from 'googlemaps';
 import {} from '@types/googlemaps';
@@ -9,7 +9,10 @@ declare var google: any;
 @Component({
   selector: 'app-gmap',
   templateUrl: './gmap.component.html',
-  styleUrls: ['./gmap.component.css']
+  styleUrls: ['./gmap.component.css'],
+  host: {
+    '(window:resize)': 'onResize($event)'
+  }
 })
 
 export class GmapComponent implements OnInit, AfterViewInit {
@@ -18,7 +21,10 @@ export class GmapComponent implements OnInit, AfterViewInit {
   public searchControl: FormControl;
   public zoom: number;
 
-  @ViewChild("search")
+  @ViewChildren('gmap')
+  public gmapElementRef: ElementRef;
+
+  @ViewChild('search')
   public searchElementRef: ElementRef;
 
   constructor(
@@ -28,7 +34,7 @@ export class GmapComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     // set google maps defaults
-    this.zoom = 4;
+    this.zoom = 12;
     this.latitude = 39.8282;
     this.longitude = -98.5795;
 
@@ -60,12 +66,16 @@ export class GmapComponent implements OnInit, AfterViewInit {
     });
   }
 
+  private onResize(event: Event) {
+//    this.gmapElementRef.
+  }
+
   private setCurrentPosition() {
-    if ("geolocation" in navigator) {
+    if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
-        this.zoom = 12;
+//        this.zoom = 12;
       });
     }
   }
