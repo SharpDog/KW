@@ -1,0 +1,16 @@
+{
+  "generator-ngx-rocket": {
+    "version": "2.0.0",
+    "props": {
+      "appName": "TAWNN",
+      "target": [
+        "web"
+      ],
+      "ui": "bootstrap",
+      "auth": true,
+      "projectName": "kw-web",
+      "mobile": [],
+      "webview": []
+    }
+  }
+}

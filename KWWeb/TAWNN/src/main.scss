@@ -1,0 +1,70 @@
+/*
+ * Entry point of global application style.
+ * Component-specific style should not go here and be included directly as part of the components.
+ */
+
+// Theme variables, must be included before the libraries to allow overriding defaults
+@import "theme/theme-variables";
+
+// 3rd party libraries
+@import "~bootstrap/scss/bootstrap";
+@import "~font-awesome/scss/font-awesome.scss";
+
+// Theme customization
+@import "theme/theme";
+
+.bg-faded {
+  color: #7dba9c;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+}
+
+.logo-small {
+  width: 30px;
+  height: 30px;
+}
+
+.header-logo {
+  float: left;
+  width: 80px;
+}
+
+.header-title {
+  background-color: #373a3c;
+  color: #22CC55;
+  float: left;
+  margin-top: 3px;
+  width: 180px;
+  white-space: nowrap;
+}
+
+.header-title span::after {
+  content: " ";
+  white-space: pre;
+}
+
+.app-title span::after {
+  content: " ";
+  white-space: pre;
+}
+
+#navbar-menu {
+  float: right;
+  width: 250px;
+}
+
+.app-title {
+  color: #047a40;
+  font-style: italic;
+}
+
+.btn-primary {
+  background-color: #047a40;
+}
+
+.btn-primary:disabled {
+  background-color: #2C5;
+}
