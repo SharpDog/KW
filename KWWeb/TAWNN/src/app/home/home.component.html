@@ -3,6 +3,8 @@
     <h5>
      <span translate>Find places around town:</span>
     </h5>
+    <p-growl #growl [value]="objToaster"
+             sticky="false" life="6000"></p-growl>
     <app-message #growl></app-message>
     <app-gmap #homemap></app-gmap>
     <app-loader [isLoading]="isLoading"></app-loader>

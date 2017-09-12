@@ -5,6 +5,7 @@ import {} from '@types/googlemaps';
 import { MapsAPILoader } from '@agm/core';
 
 import { MessageService } from '../message/message.service';
+import {ToasterService} from "../../core/toaster.service";
 
 declare var google: any;
 
@@ -27,7 +28,8 @@ export class GmapComponent implements OnInit, AfterViewInit {
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private toasterService: ToasterService
   ) {}
 
   ngOnInit() {
@@ -61,6 +63,8 @@ export class GmapComponent implements OnInit, AfterViewInit {
 
           navigator.geolocation.getCurrentPosition( (p: Position) => {
             this.messageService.showMessage('info', 'distance:',
+              this.haversine(place.geometry.location.lat(), place.geometry.location.lng(), p.coords) + ' km.');
+            this.toasterService.showToaster('info', 'distance:',
               this.haversine(place.geometry.location.lat(), place.geometry.location.lng(), p.coords) + ' km.');
           });
       });

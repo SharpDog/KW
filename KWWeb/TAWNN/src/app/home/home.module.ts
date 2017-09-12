@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
+import { GrowlModule } from 'primeng/primeng';
+import { ToasterService } from '../core/toaster.service';
+
 import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
 import { HomeRoutingModule } from './home-routing.module';
@@ -12,6 +15,7 @@ import { QuoteService } from './quote.service';
   imports: [
     CommonModule,
     TranslateModule,
+    GrowlModule,
     CoreModule,
     SharedModule,
     HomeRoutingModule
@@ -20,7 +24,8 @@ import { QuoteService } from './quote.service';
     HomeComponent
   ],
   providers: [
-    QuoteService
+    QuoteService,
+    ToasterService
   ]
 })
 export class HomeModule { }
