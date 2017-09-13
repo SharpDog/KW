@@ -59,9 +59,11 @@ export class GmapComponent implements OnInit, AfterViewInit {
           this.longitude = place.geometry.location.lng();
 
           navigator.geolocation.getCurrentPosition( (p: Position) => {
-            this.toasterService.pop('info', 'distance:',
-              this.haversine(place.geometry.location.lat(), place.geometry.location.lng(), p.coords) + ' km.');
+            this.toasterService.pop('info', place.formatted_address,
+              'distance from you: '
+              + this.haversine(place.geometry.location.lat(), place.geometry.location.lng(), p.coords) + ' km.');
           });
+          this.searchElementRef.nativeElement.value = '';
       });
     });
   })

@@ -12,7 +12,7 @@ export class MessageComponent {
 
   public toasterconfig : ToasterConfig =
     new ToasterConfig({
-      timeout: 2000,
+      timeout: 6000,
       animation: 'fade'
     });
 }
